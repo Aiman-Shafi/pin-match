@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pin Generator</title>
+    <title>Pin Generator System</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -50,8 +50,8 @@
             </div>
         </div>
         <div class="notify-section">
-            <p class="notify wrong">❌ Pin Didn't Match, Please try again</p>
-            <p class="notify right">✅ Pin Matched... Secret door is opening for you</p>
+            <p class="notify wrong-pin">❌ Pin Didn't Match, Please try again</p>
+            <p class="notify correct-pin">✅ Pin Matched... Secret door is opening for you</p>
         </div>
     </div>
 
@@ -93,16 +93,19 @@
         //Check Pin
 
         function checkPin(){
-                const assignValue = document.querySelector(".showValue").value
+                const newPin = document.querySelector(".showValue").value
 
-                const generateValue = document.querySelector(".generatedPin").value
+                const generatedPin = document.querySelector(".generatedPin").value
 
-                if(assignValue == generateValue){
+                if(newPin == generatedPin){
                    document.querySelector(".notify-section").style.display="block"
-                   document.querySelector(".right").style.display= "block"
-                   document.querySelector(".wrong").style.display= "none"
+                   document.querySelector(".correct-pin").style.display= "block"
+                   document.querySelector(".wrong-pin").style.display= "none"
                    document.querySelector(".action-left").style.display ="none"
                    document.querySelector(".submit-btn").disabled = true;
+                   document.querySelector(".generate-btn").disabled = true;
+                   document.querySelector(".submit-btn").style.backgroundColor = 'green';
+                   document.querySelector(".generate-btn").style.backgroundColor = 'green';
                  
                    
 
@@ -111,10 +114,9 @@
                 else{
 
                     document.querySelector(".notify-section").style.display="block"
-                    document.querySelector(".wrong").style.display ="block";
-                    document.querySelector(".right").style.display ="none";
-                    document.querySelector(".action-left").style.display ="block"
-
+                    document.querySelector(".wrong-pin").style.display ="block";
+                    document.querySelector(".correct-pin").style.display ="none";
+                    document.querySelector(".action-left").style.display ="block";
 
                     const tryLeft = document.querySelector("#tryLeft").innerText
                     let newTryLeft = parseInt(tryLeft);
@@ -123,8 +125,10 @@
                     }
                     document.querySelector("#tryLeft").innerText = newTryLeft;  
                     
-                    if(newTryLeft == 0){
+                    if(newTryLeft === 0){
                         document.querySelector(".submit-btn").disabled = true;
+                        document.querySelector(".submit-btn").style.backgroundColor = 'red';
+                        document.querySelector(".generate-btn").style.backgroundColor = 'red';
                     }
                 }
                 
