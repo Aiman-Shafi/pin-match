@@ -13,7 +13,7 @@
             <div class="col-md-6">
                 <div class="pin-generator half-width">
                     <input class="form-control  generatedPin" type="text" >
-                    <button class="generate-btn" onclick="generatePin()">Generate Pin</button>
+                    <button class="generate-btn" >Generate Pin</button>
                 </div>
             </div>
             <div class="col-md-6">
@@ -22,27 +22,27 @@
                     <div class="numbers">
                         <div class="calc-body">
                             <div class="calc-button-row">
-                              <div class="button "onclick= " inputValue(this.innerText)">7</div>
-                              <div class="button "onclick= " inputValue(this.innerText)">8</div>
-                              <div class="button"onclick= " inputValue(this.innerText)">9</div>
+                              <div class="button ">7</div>
+                              <div class="button ">8</div>
+                              <div class="button">9</div>
                             </div>
                             <div class="calc-row">
-                              <div class="button " onclick= " inputValue(this.innerText)">4</div>
-                              <div class="button "onclick= " inputValue(this.innerText)">5</div>
-                              <div class="button "onclick= " inputValue(this.innerText)">6</div>
+                              <div class="button " >4</div>
+                              <div class="button ">5</div>
+                              <div class="button " >6</div>
                             </div>
                             <div class="calc-ow">
-                              <div class="button "onclick= " inputValue(this.innerText)">1</div>
-                              <div class="button " onclick= " inputValue(this.innerText)">2</div>
-                              <div class="button " onclick= " inputValue(this.innerText)">3</div>
+                              <div class="button ">1</div>
+                              <div class="button " >2</div>
+                              <div class="button " >3</div>
                             </div>
                             <div class="calc-row">
-                                <div class="button" onclick="removeElement()"> < </div>
-                                <div class="button" onclick= " inputValue(this.innerText)">0</div>
-                                <div class="button" onclick="clearValue()">C</div>
+                                <div class="button" > < </div>
+                                <div class="button">0</div>
+                                <div class="button">C</div>
                             </div>
                             <div>
-                                <button type="submit" class="submit-btn"  onclick="checkPin()" >Submit</button>
+                                <button type="submit" class="submit-btn" >Submit</button>
                                 <p class="action-left"><span id="tryLeft"> 3 </span> try left</p>
                             </div>
                     </div>
@@ -53,98 +53,7 @@
             <p class="notify wrong-pin">❌ Pin Didn't Match, Please try again</p>
             <p class="notify correct-pin">✅ Pin Matched... Secret door is opening for you</p>
         </div>
-    </div>
-
-    <script>
-        
-
-        //Notify None 
-
-        document.querySelector(".notify-section").style.display = "none";
-
-        //Generating Pin
-        
-        function generatePin(){
-            document.querySelector(".generatedPin").value = Math.floor(Math.random()*(9000) + 1000);
-            document.querySelector(".generatedPin").style.textAlign ="center"
-            
-        }
-
-        //Showing input 
-
-        function inputValue(number){
-            const showInput = document.querySelector(".showValue")
-            showInput.value = showInput.value + number;
-            showInput.style.textAlign ="center"
-
-        }
-
-        //Remove element
-
-        function removeElement(){
-            
-           const currentValue =  document.querySelector(".showValue").value
-           const newCurrentValue = currentValue.substring(0, currentValue.length - 1)
-           document.querySelector(".showValue").value = newCurrentValue   
-
-
-        }
-
-        //Check Pin
-
-        function checkPin(){
-                const newPin = document.querySelector(".showValue").value
-
-                const generatedPin = document.querySelector(".generatedPin").value
-
-                if(newPin == generatedPin){
-                   document.querySelector(".notify-section").style.display="block"
-                   document.querySelector(".correct-pin").style.display= "block"
-                   document.querySelector(".wrong-pin").style.display= "none"
-                   document.querySelector(".action-left").style.display ="none"
-                   document.querySelector(".submit-btn").disabled = true;
-                   document.querySelector(".generate-btn").disabled = true;
-                   document.querySelector(".submit-btn").style.backgroundColor = 'green';
-                   document.querySelector(".generate-btn").style.backgroundColor = 'green';
-                 
-                   
-
-                }
-
-                else{
-
-                    document.querySelector(".notify-section").style.display="block"
-                    document.querySelector(".wrong-pin").style.display ="block";
-                    document.querySelector(".correct-pin").style.display ="none";
-                    document.querySelector(".action-left").style.display ="block";
-
-                    const tryLeft = document.querySelector("#tryLeft").innerText
-                    let newTryLeft = parseInt(tryLeft);
-                    if(newTryLeft > 0){
-                        newTryLeft = newTryLeft - 1 ;
-                    }
-                    document.querySelector("#tryLeft").innerText = newTryLeft;  
-                    
-                    if(newTryLeft === 0){
-                        document.querySelector(".submit-btn").disabled = true;
-                        document.querySelector(".submit-btn").style.backgroundColor = 'red';
-                        document.querySelector(".generate-btn").style.backgroundColor = 'red';
-                    }
-                }
-                
-                document.querySelector(".showValue").value = "";
-            
-                
-                
-        }
-
-        function clearValue() {
-             document.querySelector(".showValue").value = null;
-        }
-   
-
-            
-    </script>
+           </div>
 
     
 </body>
